@@ -1,3 +1,13 @@
+
+module Fight
+	def punch(person)
+		person.get_hit(@strength)
+		@caffeine -= 1
+	end
+
+end
+
+
 class Person
 	attr_accessor :name, :caffeine
 
@@ -31,6 +41,8 @@ end
 
 class PowerRanger < Person
 	attr_accessor :strength
+
+	include Fight
 	
 	def initialize(name, caffeine)
 		super
@@ -38,10 +50,10 @@ class PowerRanger < Person
 		@color = nil
 	end
 
-	def punch(person)
-		person.get_hit(@strength)
-		@caffeine -= 1
-	end
+#	def punch(person)
+#		person.get_hit(@strength)
+#		@caffeine -= 1
+#	end
 
 	def use_megazord(person)
 		person.get_hit(5000)
@@ -55,16 +67,18 @@ end
 
 class EvilNinja < Person
 	
+	include Fight
+
 	def initialize(name, caffeine)
 		super
 		@strength = 6
 		@evilness = 10
 	end
 
-	def punch(person)
-		person.get_hit(@strength)
-		@caffeine -= 1
-	end
+#	def punch(person)
+#		person.get_hit(@strength)
+#		@caffeine -= 1
+#	end
 
 	def cause_mayhem(person)
 		person.caffeine = 0
@@ -72,23 +86,22 @@ class EvilNinja < Person
 
 end
 
-def fight_scene
-	me = Person.new("Joe", 17)
-	you = Person.new("Taylor", 14)
+me = Person.new("Joe", 17)
+you = Person.new("Taylor", 14)
 
-	evilninja1 = EvilNinja.new("Tweedledee", 15)
-	evilninja2 = EvilNinja.new("Tweedledum", 16)
+evilninja1 = EvilNinja.new("Tweedledee", 15)
+evilninja2 = EvilNinja.new("Tweedledum", 16)
 
-	becky = PowerRanger.new("Becky", 13)
-	will = PowerRanger.new("William", 12)
+becky = PowerRanger.new("Becky", 13)
+will = PowerRanger.new("William", 12)
 
-	me.run(10)
-	you.drink_coffee
-	evilninja1.punch(becky)
-	evilninja1.cause_mayhem(me)
-	becky.use_megazord(evilninja2)
-end
-
+me.run(10)
+you.drink_coffee
+puts you.caffeine
+evilninja1.punch(becky)
+evilninja1.cause_mayhem(me)
+puts me.caffeine
+becky.use_megazord(evilninja2)
 
 #me = Person.new("Joe", 10)
 #uper_me = PowerRanger.new("Super Joe", 15)
@@ -104,8 +117,6 @@ end
 #puts "getting my caffeine drained by an evil ninja"
 #evil_me.cause_mayhem(me)
 #puts "taking my caffeine level from 10 to... #{me.caffeine}"
-puts "And now for the fight!"
-fight_scene
 
 
 
