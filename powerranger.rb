@@ -1,5 +1,5 @@
 class Person
-attr_accessor :name, :caffeine
+	attr_accessor :name, :caffeine
 
 	def initialize(name, caffeine)
 	@name = name
@@ -34,7 +34,7 @@ class PowerRanger < Person
 	
 	def initialize(name, caffeine)
 		super
-		@strength = 0
+		@strength = 4
 		@color = nil
 	end
 
@@ -72,21 +72,40 @@ class EvilNinja < Person
 
 end
 
+def fight_scene
+	me = Person.new("Joe", 17)
+	you = Person.new("Taylor", 14)
 
-me = Person.new("Joe", 10)
-super_me = PowerRanger.new("Super Joe", 15)
-evil_me = EvilNinja.new("Evil Me", 20)
+	evilninja1 = EvilNinja.new("Tweedledee", 15)
+	evilninja2 = EvilNinja.new("Tweedledum", 16)
+
+	becky = PowerRanger.new("Becky", 13)
+	will = PowerRanger.new("William", 12)
+
+	me.run(10)
+	you.drink_coffee
+	evilninja1.punch(becky)
+	evilninja1.cause_mayhem(me)
+	becky.use_megazord(evilninja2)
+end
+
+
+#me = Person.new("Joe", 10)
+#uper_me = PowerRanger.new("Super Joe", 15)
+#evil_me = EvilNinja.new("Evil Me", 20)
 
 
 #puts "getting punched"
 #super_me.punch(me)
 #puts "getting megazorded"
 #super_me.use_megazord(me)
-puts "getting punched by an evil ninja"
-evil_me.punch(me)
-puts "getting my caffeine drained by an evil ninja"
-evil_me.cause_mayhem(me)
-puts "taking my caffeine level from 10 to... #{me.caffeine}"
+#puts "getting punched by an evil ninja"
+#evil_me.punch(me)
+#puts "getting my caffeine drained by an evil ninja"
+#evil_me.cause_mayhem(me)
+#puts "taking my caffeine level from 10 to... #{me.caffeine}"
+puts "And now for the fight!"
+fight_scene
 
 
 
