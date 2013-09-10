@@ -53,18 +53,40 @@ class PowerRanger < Person
 
 end
 
-class EvilNinja
+class EvilNinja < Person
+	
+	def initialize(name, caffeine)
+		super
+		@strength = 6
+		@evilness = 10
+	end
+
+	def punch(person)
+		person.get_hit(@strength)
+		@caffeine -= 1
+	end
+
+	def cause_mayhem(person)
+		person.caffeine = 0
+	end	
+
 end
 
 
 me = Person.new("Joe", 10)
 super_me = PowerRanger.new("Super Joe", 15)
+evil_me = EvilNinja.new("Evil Me", 20)
 
 
-puts "getting punched"
-super_me.punch(me)
-puts "getting megazorded"
-super_me.use_megazord(me)
+#puts "getting punched"
+#super_me.punch(me)
+#puts "getting megazorded"
+#super_me.use_megazord(me)
+puts "getting punched by an evil ninja"
+evil_me.punch(me)
+puts "getting my caffeine drained by an evil ninja"
+evil_me.cause_mayhem(me)
+puts "taking my caffeine level from 10 to... #{me.caffeine}"
 
 
 
